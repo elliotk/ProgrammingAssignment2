@@ -51,18 +51,10 @@ cacheSolve <- function(x, ...) {
     }
     ## Fetch data
     data <- x$get()
-    
-    ## Is matrix square?
-    if (nrow(data) != ncol(data)) {
-        ## Dimension message xstring
-        dim.msg <- paste("(", nrow(data), " X ",
-                         ncol(data), ") ",
-                         "must be square", sep="")
-        message(dim.msg)
-    } else {
-        i <- solve(data, ...)
-        x$setinverse(i)
-    }
+    ## Compute inverse
+    i <- solve(data, ...)
+    ## Set inverse
+    x$setinverse(i)
     ## Return inverse
     i
 }
